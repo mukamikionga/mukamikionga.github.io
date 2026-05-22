@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mukami Kionga — Laja Trust</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #8B0000;
+  --red-dark: #5a0000;
+  --red-light: #a01010;
+  --gold: #D4AF37;
+  --gold-light: #e8cc68;
+  --cream: #FAF7F2;
+  --cream-dark: #f0ebe0;
+  --dark: #1A0000;
+  --mid: #5a3030;
+  --white: #ffffff;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(139,0,0,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 48px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  background: var(--gold);
+  color: var(--dark) !important;
+  padding: 10px 24px;
+  border-radius: 2px;
+  font-weight: 600 !important;
+  transition: background 0.2s, transform 0.15s !important;
+}
+
+.nav-cta:hover {
+  background: var(--gold-light) !important;
+  transform: translateY(-1px);
+  color: var(--dark) !important;
+}
+
+#hero {
+  min-height: 100vh;
+  background: var(--red);
+  background-image: 
+    radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(90,0,0,0.8) 0%, transparent 50%);
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(26,0,0,0.3));
+  pointer-events: none;
+}
+
+.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.hero-tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-tag span { opacity: 0.5; margin: 0 10px; font-size: 0.65rem; }
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.92;
+  color: var(--white);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.4s;
+}
+
+.hero-name strong { font-weight: 600; color: var(--gold); display: block; }
+
+.hero-divider {
+  width: 60px; height: 2px;
+  background: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-tagline {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.88);
+  max-width: 620px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+
+.hero-tagline em { color: var(--gold); font-style: italic; }
+
+.hero-pillars {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.hero-buttons {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.85s;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 16px 36px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(212,175,55,0.25);
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212,175,55,0.35);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white);
+  padding: 16px 36px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 2px;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+#about { background: var(--cream); padding: 120px 48px; }
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-photo-wrap { position: relative; }
+
+.about-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: 24px; left: 24px; right: -24px; bottom: -24px;
+  background: var(--red);
+  opacity: 0.08;
+  border-radius: 4px;
+  z-index: 0;
+}
+
+.about-photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  width: 80px; height: 80px;
+  border-top: 3px solid var(--gold);
+  border-left: 3px solid var(--gold);
+  z-index: 2;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 3px;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.about-content { padding: 20px 0; }
+
+.section-label {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.section-title em { font-style: italic; color: var(--red); }
+
+.about-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #3d1a1a;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.about-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(139,0,0,0.1);
+}
+
+.credential {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 400;
+}
+
+.credential::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+#speaking {
+  background: var(--dark);
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+#speaking::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 80% 20%, rgba(139,0,0,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 80%, rgba(212,175,55,0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.speaking-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+
+.speaking-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+}
+
+.speaking-intro .section-label { color: var(--gold); }
+.speaking-intro .section-title { color: var(--white); }
+
+.speaking-quote { display: flex; align-items: center; }
+
+.speaking-quote blockquote {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  border-left: 2px solid var(--gold);
+  padding-left: 28px;
+}
+
+.speaking-quote blockquote cite {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 16px;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(212,175,55,0.15);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 52px;
+}
+
+.topic-card {
+  background: rgba(26,0,0,0.6);
+  padding: 36px 32px;
+  transition: background 0.25s;
+}
+
+.topic-card:hover { background: rgba(139,0,0,0.4); }
+
+.topic-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: rgba(212,175,55,0.3);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.topic-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.topic-body {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+}
+
+.speaking-cta { text-align: center; padding-top: 16px; }
+
+.speaking-cta p {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 28px;
+}
+
+#laja {
+  background: var(--red);
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+#laja::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse at right center, rgba(212,175,55,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.laja-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+
+.laja-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+  align-items: start;
+}
+
+.laja-brand .section-label { color: var(--gold); opacity: 0.7; }
+
+.laja-name {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+
+.laja-etymology {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.laja-etymology em { color: var(--gold); font-style: italic; }
+
+.laja-vision {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.laja-mission-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+}
+
+.laja-right { padding-top: 8px; }
+
+.pillars { display: flex; flex-direction: column; gap: 2px; }
+
+.pillar {
+  padding: 28px 32px;
+  background: rgba(26,0,0,0.35);
+  border-left: 3px solid transparent;
+  transition: border-color 0.25s, background 0.25s;
+  cursor: default;
+}
+
+.pillar:hover {
+  border-left-color: var(--gold);
+  background: rgba(26,0,0,0.5);
+}
+
+.pillar-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.pillar-text {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+.laja-who {
+  border-top: 1px solid rgba(212,175,55,0.2);
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.who-card {
+  padding: 28px;
+  background: rgba(26,0,0,0.3);
+  border-radius: 3px;
+  border-top: 2px solid rgba(212,175,55,0.3);
+}
+
+.who-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.who-body {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+}
+
+.laja-founders {
+  margin-top: 56px;
+  padding: 32px;
+  background: rgba(26,0,0,0.4);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.founders-left {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.founders-names {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-top: 6px;
+}
+
+.founders-right {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+#series { background: var(--cream-dark); padding: 120px 48px; }
+
+.series-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.series-visual { position: relative; }
+
+.series-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.series-ep-strip {
+  background: var(--dark);
+  padding: 16px 24px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  border-radius: 0 0 4px 4px;
+}
+
+.ep-chip {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ep-chip.active { background: var(--gold); color: var(--dark); }
+
+.series-content .section-title { color: var(--dark); margin-bottom: 20px; }
+
+.series-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #3d2020;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.series-quote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--red);
+  line-height: 1.5;
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+  margin: 28px 0;
+}
+
+#connect {
+  background: var(--cream);
+  padding: 100px 48px;
+  border-top: 1px solid rgba(139,0,0,0.08);
+}
+
+.connect-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.connect-inner .section-title { color: var(--dark); margin-bottom: 16px; }
+
+.connect-sub {
+  font-size: 1.05rem;
+  color: var(--mid);
+  margin-bottom: 52px;
+  font-weight: 300;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.social-grid {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.social-btn.tiktok { background: #1a1a1a; color: white; }
+.social-btn.instagram { background: linear-gradient(135deg, #e1306c, #833ab4); color: white; }
+.social-btn.facebook { background: #1877f2; color: white; }
+.social-btn.linkedin { background: #0a66c2; color: white; }
+.social-btn.group { background: var(--red); color: white; }
+
+#contact { background: var(--dark); padding: 100px 48px; position: relative; }
+
+.contact-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+.contact-inner .section-label { color: var(--gold); margin-bottom: 16px; }
+.contact-inner .section-title { font-size: clamp(2rem, 3.5vw, 3rem); color: var(--white); margin-bottom: 20px; }
+
+.contact-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; text-align: left; margin-bottom: 36px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  padding: 14px 18px;
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { border-color: var(--gold); }
+
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--dark); color: var(--white); }
+
+.contact-direct { font-family: var(--sans); font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 24px; }
+.contact-direct a { color: var(--gold); text-decoration: none; }
+
+.partner-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: white;
+  border: 1px solid rgba(139,0,0,0.12);
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--dark);
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.partner-chip:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(212,175,55,0.15); }
+
+footer {
+  background: var(--red-dark);
+  padding: 40px 48px;
+  border-top: 1px solid rgba(212,175,55,0.15);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--white); font-weight: 400; }
+.footer-logo span { color: var(--gold); }
+.footer-pillars { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.footer-copy { font-family: var(--sans); font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { gap: 20px; }
+  #hero { padding: 100px 24px 60px; }
+  #about { padding: 80px 24px; }
+  .about-inner { grid-template-columns: 1fr; gap: 48px; }
+  .about-photo-wrap { max-width: 400px; margin: 0 auto; }
+  #speaking { padding: 80px 24px; }
+  .speaking-header { grid-template-columns: 1fr; gap: 40px; }
+  .topics-grid { grid-template-columns: 1fr; }
+  #laja { padding: 80px 24px; }
+  .laja-top { grid-template-columns: 1fr; gap: 48px; }
+  .laja-who { grid-template-columns: 1fr; }
+  #series { padding: 80px 24px; }
+  .series-inner { grid-template-columns: 1fr; gap: 48px; }
+  #connect { padding: 80px 24px; }
+  #contact { padding: 80px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 32px 24px; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .hero-name { font-size: 3.5rem; }
+  .hero-buttons { flex-direction: column; }
+  .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#hero" class="nav-logo">Mukami <span>Kionga</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#speaking">Speaking</a></li>
+    <li><a href="#laja">Laja Trust</a></li>
+    <li><a href="#programmes">Programmes</a></li>
+    <li><a href="#series">The Series</a></li>
+    <li><a href="#connect">Connect</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Clinical Psychologist <span>&middot;</span> Life Coach <span>&middot;</span> Founder, Laja Trust</p>
+    <h1 class="hero-name">
+      Mukami<br>
+      <strong>Kionga</strong>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">
+      I help parents understand<br>the children they think they <em>already know.</em>
+    </p>
+    <p class="hero-pillars">Hope &nbsp;&middot;&nbsp; Faith &nbsp;&middot;&nbsp; Love</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Book Mukami to Speak</a>
+      <a href="#series" class="btn-secondary">Watch The Kariuki Family</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap reveal">
+      <img src="https://mukamikionga.github.io/mukami.jpg" onerror="this.style.background='#c8a0a0'; this.style.aspectRatio='3/4';" alt="Mukami Kionga" class="about-photo">
+    </div>
+    <div class="about-content reveal">
+      <p class="section-label">About Mukami</p>
+      <h2 class="section-title">A clinician who <em>sees</em> what families cannot say</h2>
+      <p class="about-body">For years I have sat with families who love each other deeply and cannot reach each other. Parents who want to do better and do not know how. Children who have stopped trying to be heard. The distance between them is real, and it grows quietly, in ordinary rooms, during ordinary days.</p>
+      <p class="about-body">That gap is what I have dedicated my life to closing. Through clinical practice, life coaching, community programmes, and now through The Kariuki Family, an original animated series that tells the stories families are living but have never seen reflected back to them.</p>
+      <p class="about-body">Families do not break because of a lack of love. They break because of patterns inherited before anyone knew to question them. My work begins there.</p>
+      <div class="about-credentials">
+        <div class="credential">Clinical Psychologist</div>
+        <div class="credential">Life Coach</div>
+        <div class="credential">Co-Founder, Laja Trust (est. 2018)</div>
+        <div class="credential">Creator, The Kariuki Family</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="speaking-inner">
+    <div class="speaking-header">
+      <div class="speaking-intro reveal">
+        <p class="section-label">Speaking</p>
+        <h2 class="section-title">The conversations your organisation needs to have</h2>
+        <p style="font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.55); font-weight:300; margin-top:20px;">Mukami brings clinical depth to rooms that are used to surface-level conversations about wellbeing. She names what most speakers cannot, and she leaves every audience with something they will carry home that evening.</p>
+      </div>
+      <div class="speaking-quote reveal">
+        <blockquote>
+          "She does not lecture. She sees. And in being seen, the room changes."
+          <cite>On what to expect</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="topics-grid reveal">
+      <div class="topic-card">
+        <div class="topic-num">01</div>
+        <div class="topic-title">The Gap Between Loving Your Family and Reaching Them</div>
+        <div class="topic-body">Why good intentions are not enough, and what actually closes the distance between parents and children.</div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">02</div>
+        <div class="topic-title">What Parents Get Wrong About Silence</div>
+        <div class="topic-body">Your teenager is not shutting you out. They are calculating the risk. Understanding what their silence is actually saying.</div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">03</div>
+        <div class="topic-title">Generational Patterns and How to Interrupt Them</div>
+        <div class="topic-body">The patterns we inherit before we know we are inheriting them, and the practical steps that break the cycle.</div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">04</div>
+        <div class="topic-title">Building Intentional Families in High-Pressure Environments</div>
+        <div class="topic-body">For corporate audiences. What the professional demands on parents are costing their families, and what to do about it.</div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">05</div>
+        <div class="topic-title">What Adolescents Need That Most Parents Cannot Give</div>
+        <div class="topic-body">Not because parents do not want to. Because nobody gave it to them either. A clinical and practical exploration.</div>
+      </div>
+      <div class="topic-card">
+        <div class="topic-num">06</div>
+        <div class="topic-title">It Is Never Too Late</div>
+        <div class="topic-body">The core message. A keynote for any audience living in the gap between the family they have and the one they wanted.</div>
+      </div>
+    </div>
+
+    <div class="speaking-cta reveal">
+      <p>Available for conferences, corporate wellness days, leadership summits, and parenting seminars.</p>
+      <a href="#contact" class="btn-primary">Enquire About Booking</a>
+    </div>
+  </div>
+</section>
+
+<!-- LAJA TRUST -->
+<section id="laja">
+  <div class="laja-inner">
+    <div class="laja-top">
+      <div class="laja-brand reveal">
+        <p class="section-label">Our Mission</p>
+        <h2 class="laja-name">Laja<br>Trust</h2>
+        <p class="laja-etymology"><em>Laja</em> &mdash; a Yoruba word meaning to reconcile.</p>
+        <p class="laja-vision">Healed families.<br>Changed generations.</p>
+        <p class="laja-mission-text">Laja Trust walks alongside adolescents, youth and families, guiding them from awareness through healing to empowerment, so that the cycles of the past do not become the foundations of the future.</p>
+        <p class="laja-mission-text" style="margin-top:16px;">We began in 2018 working with adolescents. Real progress was made, until they went home. Nothing had changed. That observation shaped everything. A young person cannot be healed in isolation from the family system they live inside.</p>
+      </div>
+      <div class="laja-right reveal">
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-name">Hope</div>
+            <div class="pillar-text">Most families arrive believing it is too late. We carry hope on their behalf, until they are able to carry it themselves.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Faith</div>
+            <div class="pillar-text">The Word of God is our foundation. Truth is what produces lasting freedom. We draw on both biblical wisdom and evidence-based psychology, because these are not in conflict.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-name">Love</div>
+            <div class="pillar-text">If Christ is the foundation, love is the method. The love that sees people fully, refuses to shame them, and holds firm in the belief that they can be changed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="laja-who reveal">
+      <div class="who-card">
+        <div class="who-title">Adolescents</div>
+        <div class="who-body">Our primary focus. Young people navigating family disconnection, identity and patterns they did not choose.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-title">Youth</div>
+        <div class="who-body">Young people moving into adulthood, building their own foundations for the first time.</div>
+      </div>
+      <div class="who-card">
+        <div class="who-title">Families</div>
+        <div class="who-body">Specifically parents, whose own healing makes a young person's growth sustainable at home.</div>
+      </div>
+    </div>
+
+    <div class="laja-founders reveal">
+      <div class="founders-left">
+        <div>Co-Founders</div>
+        <div class="founders-names">Mukami Kionga &nbsp;&middot;&nbsp; Steve Ngunyi</div>
+      </div>
+      <div class="founders-right">Established 2018</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section id="programmes" style="background:var(--dark);">
+  <div style="max-width:1200px; margin:0 auto; padding:120px 48px;">
+    <div class="reveal" style="margin-bottom:64px;">
+      <p class="section-label" style="color:var(--gold);">Laja Trust</p>
+      <h2 class="section-title" style="color:var(--white);">Our Programmes</h2>
+      <p style="font-size:1rem; line-height:1.75; color:rgba(255,255,255,0.65); font-weight:300; max-width:600px; margin-top:16px;">
+        Every programme follows the same journey: from awareness, through healing, to empowerment. We walk alongside young people and families so that the cycles of the past do not become the foundations of the future.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2px; background:rgba(212,175,55,0.15); margin-bottom:52px;" class="reveal">
+
+      <div style="background:rgba(26,0,0,0.55); padding:40px 36px; display:flex; flex-direction:column; gap:14px; transition:background 0.2s;" onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(26,0,0,0.55)'">
+        <span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4CAF50; display:flex; align-items:center; gap:6px;"><span style="width:6px; height:6px; border-radius:50%; background:#4CAF50; display:inline-block;"></span>Active</span>
+        <h3 style="font-family:var(--serif); font-size:22px; font-weight:700; color:var(--white); line-height:1.2;">Little Girl Big Girl</h3>
+        <p style="font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold);">Girls &middot; Ages 9 to 12</p>
+        <p style="font-family:var(--sans); font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.7;">A 3-session programme preparing girls for the journey ahead. Each session is 3 hours, hands-on, and interactive.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:14px; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:baseline; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);"><span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); white-space:nowrap; flex-shrink:0;">Session 1</span><span style="font-family:var(--sans); font-size:14px; font-weight:300; color:rgba(255,255,255,0.75);">Puberty changes, physical and emotional</span></div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);"><span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); white-space:nowrap; flex-shrink:0;">Session 2</span><span style="font-family:var(--sans); font-size:14px; font-weight:300; color:rgba(255,255,255,0.75);">Relationships with parents, friends, and navigating crushes</span></div>
+          <div style="display:flex; align-items:baseline; gap:12px; padding:10px 0;"><span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); white-space:nowrap; flex-shrink:0;">Session 3</span><span style="font-family:var(--sans); font-size:14px; font-weight:300; color:rgba(255,255,255,0.75);">Self esteem</span></div>
+        </div>
+        <p style="font-family:var(--sans); font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px;">KES 3,000 per session. Over 100 girls have completed this programme.</p>
+      </div>
+
+      <div style="background:rgba(26,0,0,0.55); padding:40px 36px; display:flex; flex-direction:column; gap:14px; transition:background 0.2s;" onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(26,0,0,0.55)'">
+        <span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4CAF50; display:flex; align-items:center; gap:6px;"><span style="width:6px; height:6px; border-radius:50%; background:#4CAF50; display:inline-block;"></span>Active</span>
+        <h3 style="font-family:var(--serif); font-size:22px; font-weight:700; color:var(--white); line-height:1.2;">I AM Programme</h3>
+        <p style="font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold);">Girls 12+ &middot; Boys by arrangement</p>
+        <p style="font-family:var(--sans); font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.7; flex:1;">Our flagship programme for adolescents navigating identity, family dynamics, and the question of who they are becoming. Deep work. Real transformation.</p>
+        <p style="font-family:var(--sans); font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px;">Contact Mukami to enquire about group and individual session pricing.</p>
+      </div>
+
+      <div style="background:rgba(26,0,0,0.55); padding:40px 36px; display:flex; flex-direction:column; gap:14px; transition:background 0.2s;" onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(26,0,0,0.55)'">
+        <span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#B8860B; display:flex; align-items:center; gap:6px;"><span style="width:6px; height:6px; border-radius:50%; background:#B8860B; display:inline-block;"></span>Coming December 2026</span>
+        <h3 style="font-family:var(--serif); font-size:22px; font-weight:700; color:var(--white); line-height:1.2;">Her Butterfly Effect</h3>
+        <p style="font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold);">Teen Girls &middot; Ages 13 to 17</p>
+        <p style="font-family:var(--sans); font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.7; flex:1;">A programme for teenage girls stepping into the most formative years of their lives, building the self-awareness, resilience, and tools that will define how they show up in the world.</p>
+        <p style="font-family:var(--sans); font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px;">Relaunching December 2026.</p>
+      </div>
+
+      <div style="background:rgba(26,0,0,0.55); padding:40px 36px; display:flex; flex-direction:column; gap:14px; transition:background 0.2s;" onmouseover="this.style.background='rgba(139,0,0,0.4)'" onmouseout="this.style.background='rgba(26,0,0,0.55)'">
+        <span style="font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#B8860B; display:flex; align-items:center; gap:6px;"><span style="width:6px; height:6px; border-radius:50%; background:#B8860B; display:inline-block;"></span>Launching November 2026</span>
+        <h3 style="font-family:var(--serif); font-size:22px; font-weight:700; color:var(--white); line-height:1.2;">The Parent Room</h3>
+        <p style="font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold);">Parents &middot; Families</p>
+        <p style="font-family:var(--sans); font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.7; flex:1;">For the parent who is doing everything right and still cannot reach their child. A space to understand the patterns you carry and to build a new template.</p>
+        <p style="font-family:var(--sans); font-size:13px; color:rgba(255,255,255,0.45); font-style:italic; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px;">First run by invitation only, for existing Laja families.</p>
+      </div>
+
+    </div>
+
+    <div style="padding:32px 36px; background:rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.2); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;" class="reveal">
+      <p style="font-family:var(--serif); font-size:1.25rem; font-style:italic; color:var(--white);">"A young person cannot be healed in isolation from the family they live inside."</p>
+      <a href="#contact" class="btn-primary" style="white-space:nowrap;">Enquire About a Programme</a>
+    </div>
+  </div>
+</section>
+
+<!-- THE KARIUKI FAMILY -->
+<section id="series">
+  <div class="series-inner">
+    <div class="series-visual reveal">
+      <span class="series-badge">Original Series &nbsp;&middot;&nbsp; Season 1</span>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:4px; box-shadow:0 24px 60px rgba(26,0,0,0.15);">
+        <iframe
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+          src="https://www.youtube.com/embed/UfAX_v3blfk"
+          title="The Kariuki Family Episode 1 FINE"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="series-ep-strip">
+        <div class="ep-chip active">S1 E1 &mdash; FINE</div>
+        <div class="ep-chip">S1 E2 &mdash; OKAY</div>
+        <div class="ep-chip">S1 E3 &mdash; FINE. OKAY. BUSY.</div>
+      </div>
+    </div>
+    <div class="series-content reveal">
+      <p class="section-label">A Laja Trust Production</p>
+      <h2 class="section-title">The Kariuki <em>Family</em></h2>
+      <p class="series-body">An original 3D animated series following an ordinary family living in the gap between the love they have for each other and the conversations they have never been able to have.</p>
+      <p class="series-body">Created because the families I sit with every day needed to see themselves reflected somewhere. The Kariuki Family is that mirror.</p>
+      <blockquote class="series-quote">"Fine is what we say when we're anything but."</blockquote>
+      <p class="series-body">Each episode explores one word. One feeling. One silence that a whole family is living inside.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:32px;">
+        <a href="https://www.tiktok.com/@mukamikionga" target="_blank" class="btn-primary" style="background:var(--red); color:white; box-shadow:none;">Watch on TikTok</a>
+        <a href="https://www.instagram.com/mukamikionga" target="_blank" class="btn-secondary" style="border-color:rgba(139,0,0,0.3); color:var(--dark);">Watch on Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" style="background:var(--cream-dark); padding:80px 48px; border-top:1px solid rgba(139,0,0,0.08);">
+  <div style="max-width:1200px; margin:0 auto;" class="reveal">
+    <p class="section-label" style="text-align:center;">Organisations We Have Worked With</p>
+    <h2 class="section-title" style="text-align:center; font-size:clamp(1.8rem,2.5vw,2.6rem); margin-bottom:52px;">Trusted by those who invest<br><em>in people</em></h2>
+
+    <div style="margin-bottom:40px;">
+      <p style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid rgba(139,0,0,0.1);">Programme Design Partners</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+        <div class="partner-chip">Minet</div>
+        <div class="partner-chip">Jonathan Jackson Foundation</div>
+        <div class="partner-chip">Ambassadors Football</div>
+        <div class="partner-chip">World Hope</div>
+        <div class="partner-chip">Old Mutual</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:40px;">
+      <p style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid rgba(139,0,0,0.1);">Implementing Partners</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+        <div class="partner-chip">LVCT Health</div>
+        <div class="partner-chip">Amref Health Africa</div>
+        <div class="partner-chip">International School of Kenya</div>
+        <div class="partner-chip">Zana Africa Foundation</div>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-family:var(--sans); font-size:0.72rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid rgba(139,0,0,0.1);">Faith Community Partners</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+        <div class="partner-chip">Harvesters Global Church</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARENT PATHWAY -->
+<section style="background:var(--red); padding:64px 48px;">
+  <div style="max-width:900px; margin:0 auto; text-align:center;" class="reveal">
+    <p style="font-family:var(--serif); font-size:clamp(1.5rem,2.5vw,2.2rem); font-style:italic; font-weight:300; color:var(--white); line-height:1.5; margin-bottom:12px;">Are you a parent looking for support?</p>
+    <p style="font-family:var(--sans); font-size:1rem; color:rgba(255,255,255,0.7); font-weight:300; margin-bottom:36px; line-height:1.7;">You are not alone. Join the Laja Trust Family Conversations community, a safe space for parents navigating the gap between the family they have and the one they want.</p>
+    <a href="https://www.facebook.com/groups/lajatrust" target="_blank" class="btn-primary" style="background:white; color:var(--red);">Join the Community</a>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="connect-inner reveal">
+    <p class="section-label">Join the Conversation</p>
+    <h2 class="section-title">Follow the journey</h2>
+    <p class="connect-sub">New episodes, clinical insights, parenting conversations, and a community of families choosing understanding over silence.</p>
+    <div class="social-grid">
+      <a href="https://www.tiktok.com/@mukamikionga" target="_blank" class="social-btn tiktok">TikTok &mdash; @mukamikionga</a>
+      <a href="https://www.instagram.com/mukamikionga" target="_blank" class="social-btn instagram">Instagram &mdash; @mukamikionga</a>
+      <a href="https://www.facebook.com/mukamikionga" target="_blank" class="social-btn facebook">Facebook &mdash; Mukami Kionga</a>
+      <a href="https://www.linkedin.com/in/mukamikionga" target="_blank" class="social-btn linkedin">LinkedIn &mdash; Mukami Kionga</a>
+    </div>
+    <a href="https://www.facebook.com/groups/lajatrust" target="_blank" class="social-btn group" style="display:inline-flex;">Join Laja Trust Family Conversations Group</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="contact-body">For speaking enquiries, programme partnerships, media appearances, or general conversations about the work, reach out directly.</p>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Organisation</label>
+        <input type="text" placeholder="Company or organisation name">
+      </div>
+      <div class="form-group">
+        <label>Nature of Enquiry</label>
+        <select>
+          <option value="">Select one...</option>
+          <option>Speaking Engagement</option>
+          <option>Corporate Wellness Programme</option>
+          <option>Programme Partnership</option>
+          <option>Media Appearance</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me a little about what you have in mind..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="border:none; cursor:pointer; width:100%; justify-content:center; font-size:0.85rem;">Send Message</button>
+    </form>
+    <p class="contact-direct">Or email directly: <a href="mailto:kami.kionga@gmail.com">kami.kionga@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Mukami <span>Kionga</span> &nbsp;&middot;&nbsp; Laja Trust</div>
+    <div class="footer-pillars">Hope &nbsp;&middot;&nbsp; Faith &nbsp;&middot;&nbsp; Love</div>
+    <div class="footer-copy">&copy; 2026 Laja Trust. Co-founded by Mukami Kionga &amp; Steve Ngunyi.</div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Message sent. Thank you.';
+  btn.style.background = '#2d6a2d';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send Message';
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 4000);
+}
+</script>
+
+</body>
+</html>
